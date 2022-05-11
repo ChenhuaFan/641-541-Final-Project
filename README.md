@@ -15,7 +15,7 @@ This repository is the main workspace of our final project. It includes:
 - `/CustomResNet18` the web application (demo with fullly functional).
   - `/backend` the backend files for `torchserve`.
   - `/frontend` the frontend React app.
-- `541 final report.mp4` **the demo of our application. Welcome to checkout**.
+- `541 final report.mp4` **the demo of our application. Welcome to [checkout](https://youtu.be/8BdOX08LUug)**.
 
 ## Web application
 
