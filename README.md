@@ -31,6 +31,12 @@ All models **not included** in the zip file **on the Canvas**. Additional upload
 
 ![App](./app.png)
 
+install required packages
+
+```shell
+pip install -r requirements.txt
+```
+
 `torchserve` must be installed. [quick start](https://github.com/pytorch/serve/blob/master/README.md#-quick-start-with-torchserve)
 
 ```shell
@@ -49,6 +55,12 @@ location ^~ /api/ {
 }
 ```
 
+Start the nginx
+
+```shell
+nginx
+```
+
 Run the application
 
 ```shell
@@ -63,3 +75,12 @@ npm start
 ```
 
 Visit `http://localhost:port` (Nginx listen port, default is 8080).
+
+to stop torch serve
+
+```shell
+torchserve --stop
+```
+
+Can't run the torchserve? check the log files!
+`CustomResNet18/backend/logs/model_log.log`
