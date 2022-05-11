@@ -1,0 +1,5 @@
+torchserve --start --ncs --model-store model_store --models CustomResNet18.mar
+
+torch-model-archiver --model-name CustomResNet18 --version 1.0 --model-file model.py --serialized-file resnet_raw.pth --export-path model_store --extra-files index_to_name.json --handler image_classifier.py
+
+curl http://127.0.0.1:8080/predictions/CustomResNet18 -T A2803.jpg
