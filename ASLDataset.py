@@ -41,6 +41,8 @@ class ASLDataset(Dataset):
         # random
         ran = random.randint(0, 100)
         random.seed(ran)
+        print('start_range', start_range)
+        print('end_range', end_range)
         if local_classes != None:
             a_ord = ord('A')
             labels = [(ord(c) - a_ord) for c in local_classes]
