@@ -1,86 +1,37 @@
-# 541 final project
+# 641 Final project
 
 **Author:**
 
-- Rongzhe Liu (rongzhel@usc.edu)
+- Bhumi Godiwala (godiwala@usc.edu)
 - Chenhua Fan (chenhuaf@usc.edu)
+- Qiwei Chen (qiweic@usc.edu)
+
+## Quick Start
+
+install the `requirements.txt` by pip, then go through the `*.ipynb`.
+
+Or using mlflow to start mlops UI. `mlflow server --backend-store-uri sqlite:///641.db --host 0.0.0.0 --port 5000` SQLite required.
 
 ## Files
 
+All necessary files can accesse at the [google drive](https://drive.google.com/drive/u/1/folders/1fRewkkPJ_-huQXFKB7dzuzB_cuPkU5oF).
+
 This repository is the main workspace of our final project. It includes:
 
+- `/GAN` is the main GAN model we used and trained.
 - `*.ipynb` **Jupyter notebooks of model we used** (main work).
 - `ASLDataset.py` the initialization of dataset.
 - `/trained_models` the models we trained (Models **not included** in the zip file on the Canvas).
-- `/CustomResNet18` the web application (demo with fully functional, model **not included** in the zip file on the Canvas).
-  - `/backend` the backend files for `torchserve`.
-  - `/frontend` the frontend React app.
-- `541 final report.mp4` **the demo of our application. Welcome to [checkout](https://youtu.be/8BdOX08LUug)**.
+- `/imgs_outputs` is the images generated from GAN.
 
 ## Models details
 
 All models **not included** in the zip file **on the Canvas**. Additional upload required.
 
-- `CustomResNet18` 42.8 MB, the main network we used in the application, Report section 4.
-- `baselineModel_model.pth` 4.31 MB, Report section 3.1, A plain CNN.
-- `efficientnet_b0_rwightman-3dd342df.pth` 20.5 MB, Report section 4.
-- `inception_raw.pth` 96.4 MB, Report section 4.
-- `mobilenet_v3_small-047dcff4.pth` 9.83 MB, Report section 4.
+- `model` ResNet model.
+- `ST-CGAN_G1_1260.pth` GAN model. 111.6MB
+- `ST-CGAN_G2_1260.pth` GAN model. 111.6MB
 
-## Web application
+## MLOPS
 
-![App](./app.png)
-
-install required packages
-
-```shell
-pip install -r requirements.txt
-```
-
-`torchserve` must be installed. [quick start](https://github.com/pytorch/serve/blob/master/README.md#-quick-start-with-torchserve)
-
-```shell
-pip install torchserve torch-model-archiver torch-workflow-archiver
-```
-
-`Nginx` must be installed, and add the redirection rules to the configuration.
-
-```
-location ^~ / {
-    proxy_pass http://localhost:3000/;
-}
-
-location ^~ /api/ {
-    proxy_pass http://localhost:8080/;
-}
-```
-
-Start the nginx
-
-```shell
-nginx
-```
-
-Run the application
-
-```shell
-git clone https://github.com/ChenhuaFan/541-Final-Project---Gesture-Recognition.git
-cd 541-Final-Project---Gesture-Recognition/CustomResNet18/backend
-# start the torchserve (torchserve must be installed)
-torchserve --start --ncs --model-store model_store --models CustomResNet18.mar
-# run the frontend (npm must be installed)
-cd ../frontend
-npm i
-npm start
-```
-
-Visit `http://localhost:port` (Nginx listen port, default is 8080).
-
-to stop torch serve
-
-```shell
-torchserve --stop
-```
-
-Can't run the torchserve? check the log files!
-`CustomResNet18/backend/logs/model_log.log`
+the mlops based on `mlflow`. data stored in the 641.db (sqlite)
